@@ -5,24 +5,43 @@
     <title>MultiBusca Ofertas</title>
     <style>
         body { font-family: sans-serif; background-color: #121214; color: #ffffff; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
-        .search-container { text-align: center; background-color: #202024; padding: 40px; border-radius: 12px; width: 90%; max-width: 500px; }
-        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 6px; border: none; }
-        button { padding: 12px; width: 45%; margin: 5px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; }
+        .search-container { text-align: center; background-color: #202024; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; }
+        input { width: 100%; padding: 15px; margin-bottom: 20px; border-radius: 6px; border: none; box-sizing: border-box; font-size: 16px; }
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        button { padding: 12px; width: 100%; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; color: #fff; }
+        .btn-amazon { background-color: #ff9900; color: #000; }
+        .btn-shopee { background-color: #ee4d2d; }
+        .btn-ml { background-color: #fff159; color: #333; }
+        .btn-magalu { background-color: #0086ff; }
     </style>
 </head>
 <body>
 <div class="search-container">
     <h1>MultiBusca Ofertas 🛒</h1>
     <input type="text" id="produto" placeholder="Digite o produto...">
-    <button onclick="buscar('amazon')">Amazon</button>
-    <button onclick="buscar('shopee')">Shopee</button>
+    <div class="btn-grid">
+        <button class="btn-amazon" onclick="buscar('amazon')">Amazon</button>
+        <button class="btn-shopee" onclick="buscar('shopee')">Shopee</button>
+        <button class="btn-ml" onclick="buscar('mercadolivre')">Mercado Livre</button>
+        <button class="btn-magalu" onclick="buscar('magalu')">Magalu</button>
+    </div>
 </div>
 <script>
 function buscar(loja) {
     const p = document.getElementById('produto').value;
-    if (loja === 'amazon') window.open('https://www.amazon.com.br/s?k=' + p);
-    else window.open('https://shopee.com.br/search?keyword=' + p);
+    if (!p) { alert('Digite um produto primeiro!'); return; }
+    
+    if (loja === 'amazon') {
+        window.open('https://www.amazon.com.br/s?k=' + p + '&tag=SEU_ID_AMAZON');
+    } else if (loja === 'shopee') {
+        window.open('https://shopee.com.br/search?keyword=' + p + '&smtt=SEU_ID_SHOPEE');
+    } else if (loja === 'mercadolivre') {
+        window.open('https://lista.mercadolivre.com.br/' + p + '#D[A:' + p + ',af_c_id=SEU_ID_ML]');
+    } else if (loja === 'magalu') {
+        window.open('https://www.magazineluiza.com.br/busca/' + p + '/?seller_id=SEU_ID_MAGALU');
+    }
 }
 </script>
 </body>
 </html>
+
