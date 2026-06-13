@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>MultiBusca Ofertas - Menor Preço</title>
+    <title>MultiBusca Ofertas - Super Filtros</title>
     <style>
         body { font-family: sans-serif; background-color: #121214; color: #ffffff; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
         .search-container { text-align: center; background-color: #202024; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; }
@@ -18,7 +18,7 @@
 <body>
 <div class="search-container">
     <h1>MultiBusca Ofertas 🛒</h1>
-    <p style="color: #87868b; margin-top: -10px; margin-bottom: 20px; font-size: 14px;">Filtrando automaticamente pelo menor preço</p>
+    <p style="color: #00ff88; margin-top: -10px; margin-bottom: 20px; font-size: 14px; font-weight: bold;">🔥 Menor Preço + Frete Grátis + Sem Juros</p>
     <input type="text" id="produto" placeholder="Digite o produto...">
     <div class="btn-grid">
         <button class="btn-amazon" onclick="buscar('amazon')">Amazon</button>
@@ -33,16 +33,16 @@ function buscar(loja) {
     if (!p) { alert('Digite um produto primeiro!'); return; }
     
     if (loja === 'amazon') {
-        // Altera o parâmetro s=price-asc-rank para ordenar do menor para o maior preço
-        window.open('https://www.amazon.com.br/s?k=' + p + '&s=price-asc-rank&tag=SEU_ID_AMAZON');
+        // Filtra por Frete Grátis enviando para produtos elegíveis a entrega gratuita e menor preço
+        window.open('https://www.amazon.com.br/s?k=' + p + '&rh=p_76%3A13861834011&s=price-asc-rank&tag=SEU_ID_AMAZON');
     } else if (loja === 'shopee') {
-        // Altera o parâmetro sortBy=price&order=asc para trazer os mais baratos primeiro
-        window.open('https://shopee.com.br/search?keyword=' + p + '&sortBy=price&order=asc&smtt=SEU_ID_SHOPEE');
+        // Ativa o filtro de Frete Grátis oficial da Shopee e menor preço
+        window.open('https://shopee.com.br/search?keyword=' + p + '&freeShipping=true&sortBy=price&order=asc&smtt=SEU_ID_SHOPEE');
     } else if (loja === 'mercadolivre') {
-        // Altera o parâmetro _PriceOrder_Asc para garantir o menor valor no topo
-        window.open('https://lista.mercadolivre.com.br/' + p + '_PriceOrder_Asc_NoIndex_True#D[A:' + p + ',af_c_id=SEU_ID_ML]');
+        // Ativa os filtros combinados de Frete Grátis (shipping_cost_free) e Sem Juros (installments_no_interest) ordenado pelo menor preço
+        window.open('https://lista.mercadolivre.com.br/' + p + '_DisplayType_G_Filter_shipping_cost_free_Filter_installments_no_interest_PriceOrder_Asc_NoIndex_True#D[A:' + p + ',af_c_id=SEU_ID_ML]');
     } else if (loja === 'magalu') {
-        // Adiciona a ordenação por menor preço na URL da Magalu
+        // Envia para a busca da Magalu com ordenação por menor preço
         window.open('https://www.magazineluiza.com.br/busca/' + p + '/?sort=price%3Aasc&seller_id=SEU_ID_MAGALU');
     }
 }
