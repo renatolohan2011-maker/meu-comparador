@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>MultiBusca Ofertas</title>
+    <title>MultiBusca Ofertas - Menor Preço</title>
     <style>
         body { font-family: sans-serif; background-color: #121214; color: #ffffff; display: flex; align-items: center; justify-content: center; height: 100vh; margin: 0; }
         .search-container { text-align: center; background-color: #202024; padding: 30px; border-radius: 12px; width: 90%; max-width: 500px; }
@@ -18,6 +18,7 @@
 <body>
 <div class="search-container">
     <h1>MultiBusca Ofertas 🛒</h1>
+    <p style="color: #87868b; margin-top: -10px; margin-bottom: 20px; font-size: 14px;">Filtrando automaticamente pelo menor preço</p>
     <input type="text" id="produto" placeholder="Digite o produto...">
     <div class="btn-grid">
         <button class="btn-amazon" onclick="buscar('amazon')">Amazon</button>
@@ -32,16 +33,19 @@ function buscar(loja) {
     if (!p) { alert('Digite um produto primeiro!'); return; }
     
     if (loja === 'amazon') {
-        window.open('https://www.amazon.com.br/s?k=' + p + '&tag=SEU_ID_AMAZON');
+        // Altera o parâmetro s=price-asc-rank para ordenar do menor para o maior preço
+        window.open('https://www.amazon.com.br/s?k=' + p + '&s=price-asc-rank&tag=SEU_ID_AMAZON');
     } else if (loja === 'shopee') {
-        window.open('https://shopee.com.br/search?keyword=' + p + '&smtt=SEU_ID_SHOPEE');
+        // Altera o parâmetro sortBy=price&order=asc para trazer os mais baratos primeiro
+        window.open('https://shopee.com.br/search?keyword=' + p + '&sortBy=price&order=asc&smtt=SEU_ID_SHOPEE');
     } else if (loja === 'mercadolivre') {
-        window.open('https://lista.mercadolivre.com.br/' + p + '#D[A:' + p + ',af_c_id=SEU_ID_ML]');
+        // Altera o parâmetro _PriceOrder_Asc para garantir o menor valor no topo
+        window.open('https://lista.mercadolivre.com.br/' + p + '_PriceOrder_Asc_NoIndex_True#D[A:' + p + ',af_c_id=SEU_ID_ML]');
     } else if (loja === 'magalu') {
-        window.open('https://www.magazineluiza.com.br/busca/' + p + '/?seller_id=SEU_ID_MAGALU');
+        // Adiciona a ordenação por menor preço na URL da Magalu
+        window.open('https://www.magazineluiza.com.br/busca/' + p + '/?sort=price%3Aasc&seller_id=SEU_ID_MAGALU');
     }
 }
 </script>
 </body>
 </html>
-
